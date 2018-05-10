@@ -12,10 +12,13 @@ var APIKey = "&api-key=486289a893354880ad8544c2288e6b09" //Your API key here, th
 $("#submit").on("click", function(){
     searchTerm = $("#keyword").val();
     recordNum = $("#numberRec").val();
-    queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm  + APIKey;
+    yearStart = "&begin_date" + $("#startYear").val();
+    yearEnd= "&end_date" + $("#endYear").val();
+
+    queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + yearStart + yearEnd  + APIKey;
     
     //DEBUG CODE
-    //console.log(queryURL);
+    console.log(queryURL);
     //console.log(recordNum);
     //Call to Ajax
     $.ajax({
@@ -24,7 +27,9 @@ $("#submit").on("click", function(){
         
     })
     .then(function(response) {
-        console.log(response);
+
+        //DEBUG CODE
+        //console.log(response);
     
         //TODO display number of records to retrieve
         for (i=0; i<recordNum ; i++){
